@@ -1,4 +1,7 @@
 //약수 구하기
+//문제 : https://school.programmers.co.kr/learn/courses/30/lessons/120897
+//블로그 링크 : https://velog.io/@s00cong/프로그래머스-c-약수-구하기
+
 #include <string>
 #include <vector>
 

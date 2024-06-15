@@ -1,4 +1,7 @@
 //숫자 찾기
+//문제 : https://school.programmers.co.kr/learn/courses/30/lessons/120904
+//블로그 링크 : https://velog.io/@s00cong/프로그래머스-c-숫자-찾기
+
 #include <string>
 #include <vector>
 

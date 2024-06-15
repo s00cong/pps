@@ -1,4 +1,7 @@
 //외계행성의 나이
+//문제 : https://school.programmers.co.kr/learn/courses/30/lessons/120834
+//블로그 링크 : https://velog.io/@s00cong/프로그래머스-c-외계행성의-나이
+
 /*
 문제 : 
  행성에서는 나이를 알파벳으로 말하고 있습니다. 
