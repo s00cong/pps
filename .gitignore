@@ -4,3 +4,4 @@ pro.html
 *.exe
 .vs/*
 .vscode/tasks.json
+.idea/*
