@@ -1,59 +1,63 @@
-#include <iostream>
-#include <algorithm>
-#include <cstring>
+#include <iostream> 
+#include <string.h>
 #include <vector>
 #include <queue>
+
 using namespace std;
+int map[1001][1001];    //자동 0 초기화
+int visited[1001];
+int N, E, V;    //node, edge, vertex (시작 노드)
+queue<int> q;
 
-vector<int> e[1001];
-bool check[1001];
+void dfs(int n){
 
-void dfs(int v) {
-	check[v] = true;
-	cout << v << " ";
-	for (int i = 0; i < e[v].size(); i++) {
-		int next = e[v][i];
-		if (!check[next])
-			dfs(next);
-	}
+    visited[n]=1;
+    cout<<n<<" ";
+    for(int i = 1; i <= N; i++){
+        if(map[n][i]==1&&visited[i]==0){
+            dfs(i);
+        }
+    }
+
 }
 
-void bfs(int v) {
-	queue<int> q;
-	q.push(v);
-	check[v] = true;
-	while (!q.empty()) {
-		int cur = q.front();
-		q.pop();
-		cout << cur << " ";
-		for (int i = 0; i < e[cur].size(); i++) {
-			int next = e[cur][i];
-			if (!check[next]) {
-				check[next] = true;
-				q.push(next);
-			}
-		}
-	}
+void bfs(int n){
+    q.push(n);
+    visited[n] = 1;
+    cout << n << " ";
+
+    while(!q.empty()){
+        int cur = q.front();
+        q.pop();
+
+        for(int i = 1; i <= N; i++){
+            if(map[cur][i]==1 && visited[i]==0){
+                q.push(i);
+                visited[i]=1;
+                cout << i << " ";
+            }
+
+        }
+        
+
+    }
+
+
 }
 
-int main(void) {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
+int main(){
+    cin >> N >> E >> V ;
+    int fr=0,to=0;
 
-	int N, M, V, from, to;
-	cin >> N >> M >> V;
-	for (int i = 0; i < M; i++) {
-		cin >> from >> to;
-		e[from].push_back(to);
-		e[to].push_back(from);
-	}
+    for(int i = 0; i<E; i++){
+        cin >> fr >> to;
+        map[fr][to]=map[to][fr]=1;
+    }
 
-	for (int i = 1; i <= N; i++)
-		sort(e[i].begin(), e[i].end());
-	dfs(V);
-	cout << '\n';
-	memset(check, false, sizeof(check));
-	bfs(V);
+    dfs(V);
+    memset(visited,0,sizeof(visited));
+    cout<<"\n";
+    bfs(V);
 
-	return 0;
+    return 0;
 }
