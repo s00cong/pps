@@ -1,38 +1,42 @@
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int N, M;
-    static boolean[] visited;
-    static int[] numbers;
-    static StringBuilder sb = new StringBuilder();
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        N = sc.nextInt();
-        M = sc.nextInt();
-        visited = new boolean[N+1];
-        numbers = new int[M];
-        // 순열
-        Permutation(0);
-        System.out.println(sb.toString());
+    static int N,M;
+    static int[] arr;
+    static int[] visited;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        arr = new int[M];
+        visited = new int[N+1];
+
+        solve(0);
     }
 
-    static void Permutation(int cnt){
-        if(cnt == M){
-            for(int i = 0 ; i<M;i++){
-                sb.append(numbers[i]+" ");
+    static void solve(int cnt){
+        if(cnt == M) {
+            for(int i = 0; i<M;i++){
+                System.out.print(arr[i]+" ");
             }
-            sb.append('\n');
+            System.out.println();
             return;
         }
-
         for(int i = 1; i<=N; i++){
-            if(visited[i]) continue;
-            numbers[cnt] = i;
-            visited[i] = true;
-            Permutation(cnt+1);
-            visited[i] = false;
+            if(visited[i]==1) continue;
+            
+            arr[cnt]=i;
+            visited[i] = 1;
+            solve(cnt+1);
+            visited[i] = 0;
+            
         }
-
     }
 }
