@@ -1,4 +1,4 @@
-import javax.naming.PartialResultException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,53 +6,42 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    private static int N;
-    private static int M;
-    private static boolean[] visited;
-
-    private static int[] arr;
-    private static int[] numbers;
-
-    private static StringBuilder sb = new StringBuilder();
-
-    public static void main(String[] args) throws IOException {
+    static int N,M;
+    static int[] arr;
+    static int[] visited;
+    static int[] numbers;
+    static StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
+        
         arr = new int[M];
-        visited = new boolean[N + 1];
-        numbers = new int[N];
-        st = new StringTokenizer(br.readLine());
+        visited = new int[N+1];
 
-        for (int i = 0; i < N; i++) {
+        numbers = new int[N+1];
+        st = new StringTokenizer(br.readLine());
+        for(int i = 1 ; i <= N; i++){
             numbers[i] = Integer.parseInt(st.nextToken());
         }
-
         Arrays.sort(numbers);
-
-        dfs(0, 0);
-
+        solve(0,1);
         System.out.println(sb);
     }
 
-    static void dfs(int depth, int start) {
-        if (depth == M) {
-            for (int i : arr) {
-                sb.append(i).append(" ");
+    static void solve(int cnt, int start){
+        if(cnt == M) {
+            for(int i = 0; i<M;i++){
+                sb.append(arr[i]).append(" ");
             }
-            sb.append("\n");
+            sb.append('\n');
             return;
         }
-
-        for (int i = start; i < N; i++) {
-            if (visited[i]) continue;
-            visited[i] = true;
-            arr[depth] = numbers[i];
-            dfs(depth + 1, i + 1);
-            visited[i] = false;
+        for(int i = start; i<=N; i++){
+            arr[cnt]=numbers[i];
+            solve(cnt+1,i+1);
         }
     }
 }
