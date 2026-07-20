@@ -1,7 +1,7 @@
-
 .vscode/settings.json
 pro.html
 *.exe
 .vs/*
 .vscode/tasks.json
 .idea/*
+*.DS_Store
